@@ -105,3 +105,5 @@ Có thể bật/tắt cảnh báo tại `assets/config.js`:
 - **Tab xem một phần không đúng vị trí:** chỉnh tọa độ vùng trong `assets/config.js` cho khớp template SVG thực tế.
 
 Không cần `.htaccess`, PHP, Node.js, npm, API key hay kho lưu trữ ngoài.
+
+
