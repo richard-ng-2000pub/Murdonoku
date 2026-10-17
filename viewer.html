@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f1df">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Murdonoku | Full Solution Viewer</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/config.js?v=2"></script>
+  <script defer src="assets/viewer.js?v=2"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="Murdonoku home">
+      <span class="brand-icon" aria-hidden="true">◆</span>
+      <span class="brand-name">MURDONOKU</span>
+    </a>
+    <button class="top-action" type="button" id="fullscreenBtn" aria-label="Enter fullscreen" title="Enter fullscreen">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="desktop-text">Fullscreen</span>
+    </button>
+  </header>
+
+  <main class="screen" id="screen" aria-label="Murdonoku solution">
+    <div class="image-viewport" id="imageViewport" hidden>
+      <img id="solutionImage" alt="Murdonoku solution image" draggable="false" decoding="async">
+    </div>
+
+    <section id="welcome" class="state-card" hidden>
+      <div class="state-symbol" aria-hidden="true">◇</div>
+      <h1>MURDONOKU</h1>
+      <p>Enter an SVG filename from the <code>solutions</code> folder to view its answer, or scan the QR code printed in your book.</p>
+      <form id="openForm" class="open-form">
+        <label for="fileInput">Solution filename</label>
+        <div class="form-row">
+          <input id="fileInput" type="text" placeholder="Example: CASE_001_full_solution.svg" autocomplete="off" spellcheck="false" required>
+          <button type="submit">View solution</button>
+        </div>
+      </form>
+      <p class="sample-link"><a href="viewer.html?f=EXAMPLE_full_solution.svg">View sample solution</a></p>
+    </section>
+
+    <div id="loading" class="loading-state" role="status" hidden>
+      <span class="spinner" aria-hidden="true"></span>
+      <span>Loading solution…</span>
+    </div>
+
+    <section id="errorState" class="state-card" role="alert" hidden>
+      <div class="state-symbol warning" aria-hidden="true">!</div>
+      <h1>Unable to open solution</h1>
+      <p id="errorMessage">The requested solution could not be loaded.</p>
+      <a class="secondary-link" href="index.html">Try another filename</a>
+    </section>
+
+    <div class="fullscreen-tools" aria-label="Fullscreen controls">
+      <button type="button" data-view="overview" aria-label="Full solution">Full</button>
+      <button type="button" data-view="sudoku" aria-label="Sudoku">Sudoku</button>
+      <button type="button" data-view="nonogram" aria-label="Nonogram">Nonogram</button>
+      <button type="button" data-view="murderer" aria-label="The murderer">Murderer</button>
+      <button type="button" id="exitFullscreen" aria-label="Exit fullscreen">✕</button>
+    </div>
+
+    <div class="guard-backdrop" id="guardBackdrop" hidden role="dialog" aria-modal="true" aria-labelledby="guardTitle" aria-describedby="guardDescription">
+      <div class="guard-card">
+        <span class="guard-lock" aria-hidden="true">🔒</span>
+        <h2 id="guardTitle">Inspection warning</h2>
+        <p id="guardDescription">These Murdonoku solutions are intended for readers of the book. Please do not copy or redistribute the content.</p>
+        <button type="button" id="guardClose">Continue viewing</button>
+      </div>
+    </div>
+  </main>
+
+  <nav class="view-tabs" id="viewTabs" aria-label="Choose a solution view">
+    <button type="button" class="tab active" data-view="overview" aria-pressed="true"><span class="tab-icon" aria-hidden="true">▦</span><span>Full</span></button>
+    <button type="button" class="tab" data-view="sudoku" aria-pressed="false"><span class="tab-icon" aria-hidden="true">▤</span><span>Sudoku</span></button>
+    <button type="button" class="tab" data-view="nonogram" aria-pressed="false"><span class="tab-icon" aria-hidden="true">▥</span><span>Nonogram</span></button>
+    <button type="button" class="tab" data-view="murderer" aria-pressed="false"><span class="tab-icon" aria-hidden="true">♟</span><span>Murderer</span></button>
+  </nav>
+</body>
+</html>
